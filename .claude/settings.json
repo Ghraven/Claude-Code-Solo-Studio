@@ -1,0 +1,46 @@
+{
+  "hooks": {
+    "session_start": [
+      {
+        "script": ".claude/hooks/session-start.sh"
+      }
+    ],
+    "session_stop": [
+      {
+        "script": ".claude/hooks/session-stop.sh"
+      }
+    ],
+    "pre_tool_use": [
+      {
+        "script": ".claude/hooks/validate-commit.sh",
+        "tools": ["Bash"]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git status)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git branch*)",
+      "Bash(git checkout*)",
+      "Bash(git push*)",
+      "Bash(ls*)",
+      "Bash(cat*)",
+      "Bash(find*)",
+      "Bash(grep*)",
+      "Bash(mkdir*)",
+      "Bash(cp*)",
+      "Bash(mv*)"
+    ],
+    "deny": [
+      "Bash(rm -rf*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(cat *.env*)",
+      "Bash(cat .env*)"
+    ]
+  }
+}

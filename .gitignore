@@ -1,0 +1,41 @@
+# Godot
+.godot/
+*.import
+export_credentials.cfg
+
+# Unity
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+MemoryCaptures/
+*.csproj
+*.sln
+*.unitypackage
+
+# Environment
+.env
+.env.local
+*.env
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Exports / builds
+*.apk
+*.aab
+*.exe
+*.app
+dist/
+build/
