@@ -1,79 +1,98 @@
-# Claude-Code-Solo-Studio
+<h1 align="center">🎮 Claude Code Solo Studio</h1>
 
-A lightweight Claude Code template for solo game developers.
+<p align="center">
+  A lightweight Claude Code template for solo game developers.<br/>
+  <strong>Build your game — not your framework.</strong>
+</p>
 
-**Build your game — not your framework.**
+<p align="center">
+  <img src="https://img.shields.io/badge/Claude%20Code-required-purple?style=flat-square" />
+  <img src="https://img.shields.io/badge/Godot-4.x-478CBF?style=flat-square&logo=godot-engine" />
+  <img src="https://img.shields.io/badge/Unity-6-black?style=flat-square&logo=unity" />
+  <img src="https://img.shields.io/badge/Agents-6-orange?style=flat-square" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" />
+</p>
 
 ---
 
-## Why this exists
+## The Problem
 
-Most multi-agent AI repos burn your token budget on agent coordination before a single line of code gets written. 49 agents talking to directors talking to leads just to decide what to do next is a great idea for a studio with unlimited API credits. For a solo dev on a weekly limit, it's a fast way to hit your cap with nothing to show.
+Most AI coding templates burn your token budget on coordination before a single line of code gets written. 49 agents debating with directors and leads just to decide what to do next works great for a studio with unlimited API credits.
 
-This template is different:
+For a solo dev on a weekly limit, it burns your cap with nothing to show.
 
-- **6 agents** instead of 49 — one per domain, no hierarchy
-- **Self-contained prompts** — every agent has full context baked in, no inter-agent consultation
-- **3 hooks** instead of 12 — only what actually saves you time
-- **10 slash commands** — one for each real workflow step
-- **Smart starter** — pick your platform, genre, and engine, get a working project scaffold in seconds
+---
 
-The result: nearly 100% of your token budget goes to actual game development.
+## The Solution
+
+This template strips everything down to what actually matters:
+
+| | Typical multi-agent | Solo Studio |
+|---|---|---|
+| Agents | 20–49 | **6** |
+| Hierarchy | Director → Lead → Worker | **None — direct specialists** |
+| Inter-agent calls | Constant | **Zero** |
+| Slash commands | 20+ | **10 practical ones** |
+| Token overhead | High | **Near zero** |
+| Token budget going to code | ~30–50% | **~95%** |
+
+**6 specialists. No hierarchy. No coordination overhead. Nearly 100% of your tokens go to actual game code.**
 
 ---
 
 ## Quick Start
 
 ### Prerequisites
-- [Git](https://git-scm.com/)
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — `npm install -g @anthropic-ai/claude-code`
-- Godot 4 or Unity (whichever you choose)
+- Godot 4 or Unity installed
+- Git
 
 ### Setup
 
 ```bash
-git clone https://github.com/[your-username]/lean-game-studio.git my-game
+git clone https://github.com/Ghraven/Claude-Code-Solo-Studio my-game
 cd my-game
 claude
 ```
 
-Then type:
+Then in Claude Code:
 ```
 /setup
 ```
 
-Answer 4 questions. Your project is ready.
+Answer 4 questions. Your project is ready in seconds.
 
 ---
 
-## What you get from /setup
+## /setup — What It Does
 
 The setup command asks:
-1. **Platform** — Android, PC, or Web
-2. **Dimension** — 2D or 3D
-3. **Genre** — Platformer, RPG, Puzzle, Shooter, or Other
-4. **Engine** — Godot 4 or Unity (with a tip card to help you choose)
 
-Then it generates in one shot:
-- `CLAUDE.md` filled with your choices
-- Full folder structure
+1. **Platform** — Android · PC · Web
+2. **Dimension** — 2D · 3D
+3. **Genre** — Platformer · RPG · Puzzle · Shooter · Other
+4. **Engine** — Godot 4 · Unity (with a tip card to help you choose)
+
+Then generates in one shot:
+- `CLAUDE.md` filled with your project config
+- Full folder structure (`src/` · `assets/` · `design/` · `docs/` · `tests/`)
 - Starter scene and script files for your engine
 - `design/gdd.md` — Game Design Document stub ready to fill in
 
 ---
 
-## Commands
+## Slash Commands
 
 | Command | What it does |
-|---------|-------------|
-| `/setup` | Initialize project — platform, genre, engine, starter files |
-| `/new-feature` | Start building a feature (breaks it into max 5 tasks) |
-| `/level-design` | Design a level layout with scene structure |
-| `/ui-design` | Design a menu, HUD, or screen |
+|---|---|
+| `/setup` | Initialize project — platform · genre · engine · starter files |
+| `/new-feature` | Start a feature (breaks into max 5 focused tasks) |
+| `/level-design` | Design a level with scene structure |
+| `/ui-design` | Design a menu · HUD · screen |
 | `/code-review` | Review code for bugs and quality issues |
 | `/qa-check` | Full quality check before moving on |
 | `/bug-report` | Log and fix a bug |
-| `/build` | Export/build checklist for your platform |
+| `/build` | Export/build checklist for your target platform |
 | `/status` | See current sprint and what's next |
 | `/help` | List all commands |
 
@@ -81,69 +100,78 @@ Then it generates in one shot:
 
 ## Agents
 
-Agents are specialists you can invoke directly for deep focused work. Most of the time the slash commands are enough — agents are there when you want to go deeper on one domain.
+Use agents when you want deep focused work on a single domain. Slash commands handle most everyday tasks — agents are for when you need a specialist to go all-in on one area.
 
-| Agent | Domain |
-|-------|--------|
-| `game-designer` | Mechanics, balancing, GDD |
+| Agent | Use for |
+|---|---|
+| `game-designer` | Mechanics · balancing · GDD updates |
 | `programmer` | All code — GDScript or C# |
-| `level-designer` | Levels, scenes, layouts |
-| `ui-designer` | Menus, HUD, UX |
-| `qa` | Code review, bugs, testing |
-| `release` | Builds, exports, versioning |
+| `level-designer` | Level layouts · scene structure |
+| `ui-designer` | Menus · HUD · screen design |
+| `qa` | Code review · bugs · test cases |
+| `release` | Builds · exports · versioning |
 
-Each agent reads `CLAUDE.md` for project context — no re-explaining your engine or platform every session.
+Every agent reads `CLAUDE.md` for project context — no re-explaining your engine, platform, or genre every session.
 
 ---
 
 ## Project Structure
 
 ```
-CLAUDE.md                  Your project config — update this as you build
-.claude/
-  agents/                  6 self-contained agent prompts
-  skills/                  10 slash commands
-  hooks/                   3 hooks (session start/stop, commit check)
-  settings.json            Hook wiring + safe permission rules
-design/
-  gdd.md                   Game Design Document
-src/                       Game source code
-assets/                    Art, audio, fonts
-docs/                      Technical notes
-tests/                     Test cases
+my-game/
+├── CLAUDE.md                Your project brain — update this as you build
+├── .claude/
+│   ├── agents/              6 specialist agent prompts
+│   ├── skills/              10 slash commands
+│   ├── hooks/               3 hooks (session start/stop, commit check)
+│   └── settings.json        Hook wiring and permissions
+├── design/
+│   └── gdd.md               Game Design Document
+├── src/                     Game source code
+├── assets/                  Art · audio · fonts
+├── docs/                    Technical notes
+└── tests/                   Test cases
 ```
 
 ---
 
-## Token efficiency
+## How the Token Efficiency Works
 
-This template is designed to respect your API limits:
+**Agents don't talk to each other.** Each one has full context baked into its prompt and reads `CLAUDE.md` for project state. There's no coordination layer, no approval chains, no "consulting" step.
 
-- Agents don't talk to each other — no coordination overhead
-- Hooks only run when relevant (commit hook exits immediately if not a commit)
-- No approval chains — you stay in control, Claude starts working immediately
-- CLAUDE.md carries context across sessions so you don't repeat yourself
+You stay in control. Claude starts coding immediately.
+
+- Hooks only fire when relevant (commit hook exits instantly if not a commit)
+- `CLAUDE.md` carries context across sessions — no context re-setup
+- Specialists go straight to work — no meta-discussion about what to build
 
 ---
 
 ## Customization
 
-Everything is plain markdown — edit freely:
+Everything is plain Markdown — edit freely:
 
-- **Add an agent** — create a new `.md` file in `.claude/agents/`
-- **Edit a slash command** — modify the `prompt.md` in `.claude/skills/[name]/`
-- **Adjust code style** — edit the "Code Style" section in `CLAUDE.md`
-- **Add a hook** — add a bash script to `.claude/hooks/` and wire it in `settings.json`
+```bash
+# Add a new agent
+touch .claude/agents/my-agent.md
+
+# Edit a slash command
+nano .claude/skills/new-feature/prompt.md
+
+# Add a hook
+touch .claude/hooks/my-hook.sh
+# Wire it in .claude/settings.json
+```
 
 ---
 
 ## Credits
 
-Inspired by [Claude-Code-Game-Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) by Donchitos.
-This is a heavily restructured fork focused on token efficiency for solo developers.
+Inspired by [Claude-Code-Game-Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) by Donchitos.  
+Rebuilt from scratch for solo devs on limited API budgets.
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE) for details.
+MIT — see [LICENSE](LICENSE)
