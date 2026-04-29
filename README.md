@@ -93,6 +93,7 @@ Then generates in one shot:
 | `/qa-check` | Full quality check before moving on |
 | `/bug-report` | Log and fix a bug |
 | `/build` | Export/build checklist for your target platform |
+| `/build` | Export/build checklist for your target platform |
 | `/status` | See current sprint and what's next |
 | `/help` | List all commands |
 
@@ -169,6 +170,16 @@ touch .claude/hooks/my-hook.sh
 
 Inspired by [Claude-Code-Game-Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) by Donchitos.  
 Rebuilt from scratch for solo devs on limited API budgets.
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) — adding a slash command or agent is straightforward.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ---
 
