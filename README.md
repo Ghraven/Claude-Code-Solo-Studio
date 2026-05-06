@@ -13,6 +13,8 @@
   <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" />
 </p>
 
+> **v1.1** — CLAUDE.md now includes Known Issues table, Architecture Decisions log, and Agent Routing Guide. `programmer` agent expanded with Unity C# patterns and Godot signal/autoload guidance. `/bug-report` adds severity + regression tests. `/code-review` adds engine-specific checks. `/status` now surfaces open bugs.
+
 ---
 
 ## The Problem
@@ -89,11 +91,12 @@ Then generates in one shot:
 | `/new-feature` | Start a feature (breaks into max 5 focused tasks) |
 | `/level-design` | Design a level with scene structure |
 | `/ui-design` | Design a menu · HUD · screen |
-| `/code-review` | Review code for bugs and quality issues |
+| `/code-review` | Review code for bugs, engine-specific patterns, quality |
 | `/qa-check` | Full quality check before moving on |
-| `/bug-report` | Log and fix a bug |
+| `/bug-report` | Log a bug with severity, diagnosis, and regression test |
 | `/build` | Export/build checklist for your target platform |
-| `/build` | Export/build checklist for your target platform |
+| `/status` | Sprint snapshot — tasks, open bugs, next focus |
+| `/help` | Show all commands with descriptionslist for your target platform |
 | `/status` | See current sprint and what's next |
 | `/help` | List all commands |
 
