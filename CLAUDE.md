@@ -1,7 +1,7 @@
 # [GAME NAME — change this]
 
 > This file is your project's brain. Claude reads it at the start of every session.
-> Keep it updated as your game evolves — especially "Current Sprint".
+> Keep it updated as your game evolves — especially "Current Sprint" and "Known Issues".
 
 ---
 
@@ -31,86 +31,69 @@
 - Language: C#
 - Engine: Unity 6
 - Render Pipeline: Universal Render Pipeline (URP)
-- Export target: Android AAB
+- Export target: Android APK
 -->
 
 ---
 
 ## Code Style
 
-- One script = one responsibility
-- No magic numbers — use constants or `@export` (Godot) / `[SerializeField]` (Unity)
-- Comment the "why", not the "what"
-- Functions under 30 lines when possible
-- Self-explanatory variable names — no `x`, `tmp`, `data` unless obvious in context
-- Complete file rewrites preferred over partial snippets
+> /setup fills this in. Keep it consistent — agents read this every session.
 
----
-
-## Project Structure
-
-```
-src/              Game source code (scripts, scenes)
-assets/           Art, audio, fonts
-  sprites/
-  audio/
-  fonts/
-design/           Game design documents
-  gdd.md          Main game design document
-docs/             Technical notes
-tests/            Test cases and checklists
-```
-
----
-
-## Agents Available
-
-Claude, you have these specialists available. Use them directly when the task fits:
-
-| Agent | Use for |
-|-------|---------|
-| `game-designer` | Mechanics, balancing, GDD updates |
-| `programmer` | All code — GDScript or C# |
-| `level-designer` | Level layouts, scene structure |
-| `ui-designer` | Menus, HUD, screen design |
-| `qa` | Code review, bug analysis, test cases |
-| `release` | Build, export, versioning |
-
-**Important:** Agents are self-contained. They read this file for context.
-Do NOT have agents consult each other — handle tasks directly or tell the user to invoke the right agent.
+- [e.g. GDScript typed, snake_case variables, PascalCase classes]
+- [e.g. Signals for all cross-node communication]
+- [e.g. Autoload singletons: GameManager, AudioManager]
 
 ---
 
 ## Current Sprint
 
-> Update this every session. This is how Claude knows what's done and what's next.
+> Update this every time you finish a task. Agents use this to know what's in progress.
 
-- [ ] Set up project in engine
-- [ ] Create main scene
-- [ ] Build core player movement
-- [ ] Build first level (rough)
-- [ ] Main menu screen
-
----
-
-## Game Concept
-
-> Fill this in after running /setup. Keep it short — 3-5 sentences max.
-
-[Describe your game here: what the player does, what makes it fun, what's the core loop]
+- [ ] Task 1
+- [ ] Task 2
+- [ ] Task 3
 
 ---
 
 ## Known Issues
 
-> Log bugs here so they don't get forgotten between sessions.
+> Log bugs here when found. Mark resolved ones with ~~strikethrough~~. Agents check this before writing new code.
 
-- (none yet)
+| # | Description | Severity | Status |
+|---|---|---|---|
+| 1 | [describe bug] | 🔴 High / 🟡 Medium / 🟢 Low | Open / Fixed |
 
 ---
 
-## Session Notes
+## Architecture Decisions
 
-> Optional: jot anything Claude should know at the start of next session.
+> Record key decisions so Claude doesn't second-guess them in future sessions.
 
--
+| Decision | Reason |
+|---|---|
+| [e.g. Use autoload singleton for GameManager] | [e.g. Needed globally across all scenes] |
+| [e.g. Object pooling for bullets] | [e.g. Mobile performance — avoid GC spikes] |
+
+---
+
+## Agent Routing Guide
+
+> Quick reference so Claude picks the right specialist without asking.
+
+| Task type | Agent to use |
+|---|---|
+| Gameplay code, bug fixes, scripts | `programmer` |
+| Mechanics, balancing, game feel | `game-designer` |
+| Level layout, scene structure | `level-designer` |
+| Menus, HUD, UI screens | `ui-designer` |
+| Code review, testing, quality | `qa` |
+| Build, export, release notes | `release` |
+
+---
+
+## Completed Features
+
+> Move finished sprint items here so the Current Sprint stays clean.
+
+- [feature name] — completed [date]
