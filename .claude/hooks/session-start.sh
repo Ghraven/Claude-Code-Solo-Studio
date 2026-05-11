@@ -4,12 +4,11 @@
 
 echo "=== LEAN GAME STUDIO — SESSION START ==="
 
-# Show current branch
+# Show current branch and recent commits
 if git rev-parse --git-dir > /dev/null 2>&1; then
     BRANCH=$(git branch --show-current 2>/dev/null || echo "unknown")
     echo "Branch: $BRANCH"
-    
-    # Show last 3 commits
+
     echo ""
     echo "Recent commits:"
     git log --oneline -3 2>/dev/null || echo "  (no commits yet)"
@@ -17,7 +16,23 @@ else
     echo "No git repo found. Run: git init"
 fi
 
-# Remind Claude to read CLAUDE.md
+# Extract and display Current Sprint from CLAUDE.md
+if [ -f "CLAUDE.md" ]; then
+    echo ""
+    echo "Current Sprint (from CLAUDE.md):"
+    # Print lines between "## Current Sprint" and the next "##" heading
+    awk '/^## Current Sprint/{found=1; next} found && /^## /{exit} found{print}' CLAUDE.md         | grep -v "^$" | head -10         | sed "s/^/  /"
+fi
+
+# Show open bugs count if Known Issues table exists
+if [ -f "CLAUDE.md" ]; then
+    OPEN_BUGS=$(grep -c "| Open" CLAUDE.md 2>/dev/null || echo 0)
+    if [ "$OPEN_BUGS" -gt 0 ]; then
+        echo ""
+        echo "Open bugs: $OPEN_BUGS (see Known Issues in CLAUDE.md)"
+    fi
+fi
+
 echo ""
-echo "→ Read CLAUDE.md to restore project context."
+echo "→ Read CLAUDE.md to restore full project context."
 echo "========================================"
