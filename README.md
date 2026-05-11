@@ -96,9 +96,7 @@ Then generates in one shot:
 | `/bug-report` | Log a bug with severity, diagnosis, and regression test |
 | `/build` | Export/build checklist for your target platform |
 | `/status` | Sprint snapshot — tasks, open bugs, next focus |
-| `/help` | Show all commands with descriptionslist for your target platform |
-| `/status` | See current sprint and what's next |
-| `/help` | List all commands |
+| `/help` | Show all commands with descriptions |
 
 ---
 
