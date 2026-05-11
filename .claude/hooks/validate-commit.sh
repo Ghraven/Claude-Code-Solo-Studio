@@ -1,37 +1,28 @@
 #!/bin/bash
-# validate-commit.sh — runs only on git commit, not every bash call
-# Keeps this lean — exits immediately if not a commit command
+# validate-commit.sh — runs before every git commit
+# Reminds Claude to check CLAUDE.md version and update changelog
 
-# Only run for git commit
-if [[ "$CLAUDE_TOOL_INPUT" != *"git commit"* ]]; then
-    exit 0
+echo "=== PRE-COMMIT CHECK ==="
+
+# Show current version from CLAUDE.md
+if [ -f "CLAUDE.md" ]; then
+    VERSION=$(grep -m1 "\*\*Version:\*\*" CLAUDE.md | sed "s/.*\*\*Version:\*\*[[:space:]]*//" | tr -d "\r")
+    if [ -n "$VERSION" ]; then
+        echo "Current version: $VERSION"
+    fi
 fi
 
-echo "=== COMMIT VALIDATION ==="
-
-ERRORS=0
-
-# Check for hardcoded magic numbers in GDScript
-if find src/ -name "*.gd" 2>/dev/null | xargs grep -l "= [0-9]\{3,\}" 2>/dev/null | grep -v "\.import" | head -5 | grep -q .; then
-    echo "⚠️  WARNING: Possible magic numbers found in GDScript files."
-    echo "   Consider using constants or @export variables."
+# Check if CHANGELOG.md was updated in this commit
+if git diff --cached --name-only | grep -q "CHANGELOG.md"; then
+    echo "✓ CHANGELOG.md updated"
+else
+    echo "⚠  CHANGELOG.md not staged — remember to log what changed."
 fi
 
-# Check for hardcoded magic numbers in C#
-if find Assets/ -name "*.cs" 2>/dev/null | xargs grep -l " = [0-9]\{3,\}[^f]" 2>/dev/null | head -5 | grep -q .; then
-    echo "⚠️  WARNING: Possible magic numbers found in C# files."
-    echo "   Consider using [SerializeField] constants."
+# Check if CLAUDE.md is in the commit (sprint tasks may have changed)
+if git diff --cached --name-only | grep -q "CLAUDE.md"; then
+    echo "✓ CLAUDE.md staged"
 fi
 
-# Check for TODO/FIXME left in code
-TODO_COUNT=$(grep -r "TODO\|FIXME\|HACK\|XXX" src/ Assets/ 2>/dev/null | wc -l)
-if [ "$TODO_COUNT" -gt 0 ]; then
-    echo "ℹ️  NOTE: $TODO_COUNT TODO/FIXME comments found. That's okay — just be aware."
-fi
-
-if [ $ERRORS -eq 0 ]; then
-    echo "✅ Commit looks clean."
-fi
-
-echo "========================="
+echo "========================"
 exit 0
