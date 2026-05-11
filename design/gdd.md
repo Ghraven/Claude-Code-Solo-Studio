@@ -102,7 +102,18 @@ Player does [ACTION]
 
 ---
 
-## 10. Inspiration / References
+## 10. Monetization (if applicable)
+
+> Skip this section if the game is paid / for personal use.
+
+- **Model:** [Free with ads / Free with IAP / Paid / Personal project]
+- **Ad placement:** [e.g. interstitial between levels, rewarded ad for extra life]
+- **IAP ideas:** [e.g. remove ads $1.99, extra character skins, hint packs]
+- **What stays free:** [the core loop must always be playable without paying]
+
+---
+
+## 11. Inspiration / References
 
 > Games you want to learn from or feel similar to.
 
