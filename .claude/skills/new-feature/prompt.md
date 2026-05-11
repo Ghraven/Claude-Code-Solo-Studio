@@ -8,6 +8,8 @@ When the user runs `/new-feature`, ask them ONE question only:
 
 Then immediately:
 
+0. **Scan Known Issues** in CLAUDE.md — if any open bug could be triggered or worsened by this feature, flag it before starting: "⚠️ Known issue #N may be affected — fix it first or proceed knowingly?"
+
 1. Break it into tasks (max 5 tasks for the feature)
 2. Identify which agent should handle each task:
    - Design decisions → game-designer
