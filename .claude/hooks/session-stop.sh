@@ -13,10 +13,20 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
     else
         echo "No commits this session."
     fi
+
+    # Detect and warn about uncommitted changes
+    UNCOMMITTED=$(git status --porcelain 2>/dev/null | wc -l | tr -d " ")
+    if [ "$UNCOMMITTED" -gt 0 ]; then
+        echo ""
+        echo "⚠  Uncommitted changes ($UNCOMMITTED file(s)):"
+        git status --short 2>/dev/null | head -8 | sed "s/^/  /"
+        echo ""
+        echo "  Quick save: git add . && git commit -m \"wip: [what you did]\""
+    fi
 fi
 
 # Remind to update CLAUDE.md sprint
 echo ""
-echo "→ Before closing: update 'Current Sprint' in CLAUDE.md"
-echo "  so next session knows what's done and what's next."
+echo "→ Before closing: update \'Current Sprint\' in CLAUDE.md"
+echo "  so next session knows what\'s done and what\'s next."
 echo "==================="
