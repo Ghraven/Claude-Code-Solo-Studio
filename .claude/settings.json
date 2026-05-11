@@ -33,7 +33,13 @@
       "Bash(grep*)",
       "Bash(mkdir*)",
       "Bash(cp*)",
-      "Bash(mv*)"
+      "Bash(mv*)",
+      "Bash(touch*)",
+      "Bash(chmod*)",
+      "Bash(echo*)",
+      "Bash(awk*)",
+      "Bash(sed*)",
+      "Bash(wc*)"
     ],
     "deny": [
       "Bash(rm -rf*)",
