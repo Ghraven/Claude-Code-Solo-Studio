@@ -150,9 +150,37 @@ Do NOT ask me to clarify the engine or platform — it's already set here.
 Start working immediately when I give you a task.
 
 ## Current Sprint
-[Update this as you work]
+> Update this every time you finish a task.
 - [ ] Task 1
 - [ ] Task 2
+- [ ] Task 3
+
+## Known Issues
+> Log bugs here. Mark fixed ones with ~~strikethrough~~.
+
+| # | Description | Severity | Status |
+|---|---|---|---|
+| — | No issues logged yet | — | — |
+
+## Architecture Decisions
+> Record key decisions so Claude doesn't revisit them.
+
+| Decision | Reason |
+|---|---|
+| [e.g. Use autoload singleton for GameManager] | [e.g. Needed globally across all scenes] |
+
+## Agent Routing Guide
+| Task type | Agent to use |
+|---|---|
+| Gameplay code, bug fixes, scripts | `programmer` |
+| Mechanics, balancing, game feel | `game-designer` |
+| Level layout, scene structure | `level-designer` |
+| Menus, HUD, UI screens | `ui-designer` |
+| Code review, testing, quality | `qa` |
+| Build, export, release notes | `release` |
+
+## Completed Features
+- [feature name] — completed [date]
 ```
 
 ---
