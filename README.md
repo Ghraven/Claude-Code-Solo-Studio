@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" />
 </p>
 
-> **v1.1** — CLAUDE.md now includes Known Issues table, Architecture Decisions log, and Agent Routing Guide. `programmer` agent expanded with Unity C# patterns and Godot signal/autoload guidance. `/bug-report` adds severity + regression tests. `/code-review` adds engine-specific checks. `/status` now surfaces open bugs.
+> **v1.2** — Session-stop hook now warns about uncommitted changes. GDD gains a monetization section for mobile devs. `game-designer` gets mobile interruption design guidance. `new-feature` skill scans Known Issues before starting work. `qa-check` cross-references Known Issues to avoid duplicate bug reports.
 
 ---
 
