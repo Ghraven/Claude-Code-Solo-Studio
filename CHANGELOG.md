@@ -5,7 +5,6 @@ All notable changes to Claude Code Solo Studio are documented here.
 ## [Unreleased]
 
 ### Planned
-- `/performance` command — profiling and optimization checklist
 - `/save-system` command — save/load system scaffold for the chosen engine
 - Defold engine support in `/setup`
 - `/localization` command — i18n scaffold for multi-language games
@@ -15,6 +14,7 @@ All notable changes to Claude Code Solo Studio are documented here.
 ## [1.2.0] — 2025-05-12
 
 ### Added
+- `/performance` slash command — provides structured profiling checks, bottleneck diagnosis, and optimization strategy
 - `session-start.sh` now extracts and displays **Current Sprint** tasks from `CLAUDE.md` on session open — Claude knows what's in progress without reading the full file
 - `session-start.sh` shows **open bug count** from the Known Issues table
 - `validate-commit.sh` now reads current **version from CLAUDE.md** and warns if `CHANGELOG.md` is not staged

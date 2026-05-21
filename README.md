@@ -94,6 +94,7 @@ Then generates in one shot:
 | `/code-review` | Review code for bugs, engine-specific patterns, quality |
 | `/qa-check` | Full quality check before moving on |
 | `/bug-report` | Log a bug with severity, diagnosis, and regression test |
+| `/performance` | Profiling check, bottleneck diagnosis, and optimization strategy |
 | `/build` | Export/build checklist for your target platform |
 | `/status` | Sprint snapshot — tasks, open bugs, next focus |
 | `/help` | Show all commands with descriptions |
