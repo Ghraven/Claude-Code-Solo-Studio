@@ -11,10 +11,16 @@ All notable changes to Claude Code Solo Studio are documented here.
 
 ---
 
-## [1.2.0] — 2025-05-12
+## [1.3.0] — 2026-05-21
 
 ### Added
 - `/performance` slash command — provides structured profiling checks, bottleneck diagnosis, and optimization strategy
+
+---
+
+## [1.2.0] — 2025-05-12
+
+### Added
 - `session-start.sh` now extracts and displays **Current Sprint** tasks from `CLAUDE.md` on session open — Claude knows what's in progress without reading the full file
 - `session-start.sh` shows **open bug count** from the Known Issues table
 - `validate-commit.sh` now reads current **version from CLAUDE.md** and warns if `CHANGELOG.md` is not staged
