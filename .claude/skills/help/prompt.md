@@ -18,6 +18,7 @@ QUALITY
   /code-review    Review code for bugs and issues
   /qa-check       Full quality check before moving on
   /bug-report     Log and fix a bug
+  /performance    Profile, diagnose, and optimize bottlenecks
 
 RELEASING
   /build          Export/build checklist for your platform
