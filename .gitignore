@@ -2,6 +2,10 @@
 .godot/
 *.import
 export_credentials.cfg
+export_presets.cfg
+*.translation
+*.remap
+*.uid
 
 # Unity
 Library/
@@ -12,9 +16,18 @@ Builds/
 Logs/
 UserSettings/
 MemoryCaptures/
+Recordings/
+CrashReports/
 *.csproj
 *.sln
 *.unitypackage
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
 
 # Environment
 .env
@@ -37,5 +50,9 @@ desktop.ini
 *.aab
 *.exe
 *.app
+*.ipa
+*.xapk
+*.zip
+*.dmg
 dist/
 build/
