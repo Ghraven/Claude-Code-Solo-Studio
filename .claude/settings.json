@@ -31,6 +31,7 @@
       "Bash(cat*)",
       "Bash(find*)",
       "Bash(grep*)",
+      "Bash(rg*)",
       "Bash(mkdir*)",
       "Bash(cp*)",
       "Bash(mv*)",

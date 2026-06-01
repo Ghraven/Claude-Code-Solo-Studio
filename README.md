@@ -166,6 +166,8 @@ touch .claude/hooks/my-hook.sh
 # Wire it in .claude/settings.json
 ```
 
+The default Claude Code permissions allow common read-only navigation tools, including `rg`, so agents can search the project quickly without broad shell access.
+
 ---
 
 ## Credits
