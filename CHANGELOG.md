@@ -4,6 +4,9 @@ All notable changes to Claude Code Solo Studio are documented here.
 
 ## [Unreleased]
 
+### Fixed
+- `session-start.sh` now shows a clear fallback when `CLAUDE.md` has no active sprint tasks instead of printing a blank sprint block.
+
 ### Planned
 - `/save-system` command — save/load system scaffold for the chosen engine
 - Defold engine support in `/setup`

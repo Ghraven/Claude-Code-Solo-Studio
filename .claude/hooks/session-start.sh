@@ -21,7 +21,17 @@ if [ -f "CLAUDE.md" ]; then
     echo ""
     echo "Current Sprint (from CLAUDE.md):"
     # Print lines between "## Current Sprint" and the next "##" heading
-    awk '/^## Current Sprint/{found=1; next} found && /^## /{exit} found{print}' CLAUDE.md         | grep -v "^$" | head -10         | sed "s/^/  /"
+    SPRINT_LINES=$(
+        awk '/^## Current Sprint/{found=1; next} found && /^## /{exit} found{print}' CLAUDE.md \
+            | grep -E "^- \\[[ xX]\\]" \
+            | grep -v "\\[ \\] Task [0-9]" \
+            | head -10
+    )
+    if [ -n "$SPRINT_LINES" ]; then
+        echo "$SPRINT_LINES" | sed "s/^/  /"
+    else
+        echo "  (no active sprint tasks yet — update CLAUDE.md or run /setup)"
+    fi
 fi
 
 # Show open bugs count if Known Issues table exists
