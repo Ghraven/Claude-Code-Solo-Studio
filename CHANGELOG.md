@@ -1,3 +1,8 @@
+## Unreleased - sprite pipeline
+
+- Add an optional sprite-gen workflow and /sprite-pipeline skill with a pinned upstream revision.
+- Add Skybreak, an offline 2D combat example using generated sprite atlases and a runtime sprite lab.
+
 # Changelog
 
 All notable changes to Claude Code Solo Studio are documented here.

@@ -104,6 +104,7 @@ Then generates in one shot:
 | `/new-feature` | Start a feature (breaks into max 5 focused tasks) |
 | `/level-design` | Design a level with scene structure |
 | `/ui-design` | Design a menu · HUD · screen |
+| `/sprite-pipeline` | Generate, extract, inspect and integrate animated 2D sprites |
 | `/code-review` | Review code for bugs, engine-specific patterns, quality |
 | `/qa-check` | Full quality check before moving on |
 | `/bug-report` | Log a bug with severity, diagnosis, and regression test |
@@ -211,3 +212,7 @@ I use AI-assisted development tools, including Codex and Claude, while building 
 ## License
 
 MIT — see [LICENSE](LICENSE)
+
+## Animated sprite production
+
+Use the optional [sprite-gen workflow](docs/sprite-gen.md) and `/sprite-pipeline` command for generated animation rows, alpha extraction, atlas manifests and palette variants. Try [Skybreak](examples/skybreak/README.md), a small offline combat demo with a sprite inspection panel.

@@ -13,6 +13,7 @@ BUILDING
   /new-feature    Start building a new game feature
   /level-design   Design a level or scene layout
   /ui-design      Design a menu, HUD, or screen
+  /sprite-pipeline Generate and integrate 2D animated sprites
 
 QUALITY
   /code-review    Review code for bugs and issues

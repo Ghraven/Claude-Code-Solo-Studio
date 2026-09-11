@@ -56,3 +56,8 @@ desktop.ini
 *.dmg
 dist/
 build/
+
+# Optional local asset tooling
+.venv/
+tools/sprite-gen/
+__pycache__/
