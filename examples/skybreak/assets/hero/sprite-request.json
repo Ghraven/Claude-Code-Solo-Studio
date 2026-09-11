@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "kind": "sprite-gen-request",
+  "engine": "component-row",
+  "character": {
+    "id": "sky-knight",
+    "description": "",
+    "base_image": "base-source.png"
+  },
+  "cell": {
+    "shape": "square",
+    "width": 256,
+    "height": 256,
+    "safe_margin_x": 22,
+    "safe_margin_y": 22,
+    "size": 256,
+    "safe_margin": 22
+  },
+  "chroma_key": {
+    "name": "magenta",
+    "hex": "#FF00FF",
+    "rgb": [
+      255,
+      0,
+      255
+    ],
+    "selection": "manual"
+  },
+  "states": {
+    "run": {
+      "frames": 4,
+      "fps": 10,
+      "loop": true,
+      "action": "right-facing running cycle: contact, passing, opposite contact, opposite passing; alternate forward legs clearly, sword held behind, same size"
+    },
+    "attack": {
+      "frames": 4,
+      "fps": 10,
+      "loop": false,
+      "action": "right-facing sword slash: anticipation sword raised, fast diagonal strike, fully extended forward slash, recover to guard; no detached effects"
+    },
+    "idle": {
+      "frames": 4,
+      "fps": 6,
+      "loop": true,
+      "action": "subtle battle-ready breathing, sword held low, scarf sways, feet planted"
+    }
+  },
+  "style": "clean anime cel shaded illustration, not pixel art",
+  "layout": "taxonomy/v1",
+  "fit": {
+    "resample": "lanczos",
+    "align_x": "bbox-center",
+    "align_y": "bottom",
+    "pixel_unfake": false
+  },
+  "chroma": {
+    "mode": "rgb",
+    "unmix_reach": 4,
+    "spill_max_fraction": 0.005
+  }
+}

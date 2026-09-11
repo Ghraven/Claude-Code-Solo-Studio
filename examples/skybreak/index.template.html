@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Skybreak — The Azure Gate</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #080f19;
+        color: #e6eef5;
+        font:
+          14px system-ui,
+          sans-serif;
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+        color: inherit;
+        background: #16293b;
+        border: 1px solid #395365;
+        border-radius: 7px;
+        padding: 10px 16px;
+      }
+      button:hover,
+      button.active {
+        background: #264756;
+        border-color: #6ee5db;
+      }
+      button:focus-visible {
+        outline: 2px solid #e9c483;
+        outline-offset: 3px;
+      }
+      .shell {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 24px 34px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 22px;
+      }
+      .brand {
+        font-size: 17px;
+        letter-spacing: 5px;
+        font-weight: 800;
+      }
+      .brand i {
+        font-style: normal;
+        color: #69ddd1;
+      }
+      .tag {
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: #8da6b7;
+      }
+      .topactions {
+        display: flex;
+        gap: 9px;
+      }
+      h1 {
+        font-family: Georgia, serif;
+        font-weight: 400;
+        font-size: 38px;
+        margin: 0 0 7px;
+      }
+      .intro {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .intro p {
+        color: #94aabb;
+        margin: 0;
+      }
+      .chapter {
+        font-size: 11px;
+        color: #e9c483;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+      }
+      .stage {
+        position: relative;
+        border: 1px solid #2d4556;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 20px 90px #0008;
+        background: #11243b;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16/9;
+        outline: none;
+      }
+      .overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(90deg, #071522dc, #07152255);
+        text-align: center;
+      }
+      .overlay.hidden {
+        display: none;
+      }
+      .card {
+        padding: 30px;
+        max-width: 490px;
+      }
+      .card h2 {
+        font:
+          46px Georgia,
+          serif;
+        margin: 8px 0 12px;
+      }
+      .card p {
+        line-height: 1.7;
+        color: #bdd1df;
+      }
+      .primary {
+        background: #74e1cf;
+        color: #092c32;
+        border: 0;
+        font-weight: 750;
+        padding: 13px 29px;
+      }
+      .eyebrow {
+        font-size: 10px;
+        letter-spacing: 3px;
+        color: #e9c483;
+      }
+      .hud {
+        position: absolute;
+        left: 24px;
+        top: 20px;
+        pointer-events: none;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .crest {
+        border: 1px solid #829ca0;
+        background: #102c3dcc;
+        border-radius: 50%;
+        padding: 12px;
+        color: #a2eee1;
+      }
+      .bar {
+        width: 190px;
+        height: 7px;
+        background: #07121c;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 7px;
+      }
+      .bar span {
+        display: block;
+        background: linear-gradient(90deg, #51baa9, #a9f6d7);
+        height: 100%;
+        width: 100%;
+        transition: width 0.15s;
+      }
+      .mana span {
+        background: linear-gradient(90deg, #518eec, #92c3ff);
+      }
+      .heroLabel {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+      }
+      .hudRight {
+        position: absolute;
+        right: 24px;
+        top: 23px;
+        text-align: right;
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: #d1e5ee;
+      }
+      .hudRight strong {
+        display: block;
+        font-size: 22px;
+        letter-spacing: 0;
+        margin-top: 7px;
+      }
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        align-items: center;
+        margin-top: 16px;
+        color: #8da6b7;
+        font-size: 12px;
+      }
+      .keys {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      kbd {
+        font: 11px system-ui;
+        color: #d8e8f0;
+        background: #152534;
+        border: 1px solid #314657;
+        border-radius: 4px;
+        padding: 4px 7px;
+        margin-right: 5px;
+      }
+      .status {
+        color: #7acfbf;
+      }
+      .lab {
+        display: none;
+        padding: 22px;
+        margin-top: 18px;
+        border: 1px solid #2d4556;
+        border-radius: 10px;
+        background: #0d1c29;
+      }
+      .lab.show {
+        display: block;
+      }
+      .labheader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .lab h3 {
+        font:
+          22px Georgia,
+          serif;
+        margin: 0;
+      }
+      .lab p {
+        color: #a0b7c6;
+        line-height: 1.6;
+      }
+      .lab canvas {
+        width: 100%;
+        height: 190px;
+        aspect-ratio: auto;
+        background: repeating-conic-gradient(#213648 0% 25%, #1a2c3e 0% 50%)
+          50%/24px 24px;
+        border-radius: 8px;
+        margin: 15px 0;
+      }
+      .labcontrols {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      footer {
+        margin-top: 22px;
+        color: #597286;
+        font-size: 10px;
+        letter-spacing: 1px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .touch {
+        display: none;
+        justify-content: space-between;
+        margin-top: 14px;
+      }
+      .touch button {
+        touch-action: none;
+        min-width: 45px;
+      }
+      @media (pointer: coarse) {
+        .touch {
+          display: flex;
+        }
+      }
+      @media (max-width: 700px) {
+        .shell {
+          padding: 16px 12px;
+        }
+        .tag {
+          display: none;
+        }
+        h1 {
+          font-size: 27px;
+        }
+        .intro p {
+          font-size: 12px;
+        }
+        .intro .tag {
+          display: none;
+        }
+        .topactions button {
+          font-size: 11px;
+          padding: 8px;
+        }
+        .bottom {
+          display: block;
+        }
+        .keys {
+          gap: 10px;
+        }
+        .status {
+          margin-top: 12px;
+        }
+        .hud {
+          transform: scale(0.7);
+          transform-origin: top left;
+          top: 10px;
+          left: 10px;
+        }
+        .hudRight {
+          top: 12px;
+          right: 12px;
+          font-size: 8px;
+        }
+        .hudRight strong {
+          font-size: 15px;
+        }
+        .card h2 {
+          font-size: 27px;
+        }
+        .card p {
+          font-size: 12px;
+          line-height: 1.4;
+        }
+        .card {
+          padding: 14px;
+        }
+        .eyebrow {
+          font-size: 8px;
+        }
+        footer {
+          font-size: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <div class="brand"><i>✧</i> SKYBREAK</div>
+        <span class="tag">SOLO STUDIO / PLAYABLE EXPERIMENT 001</span>
+        <div class="topactions">
+          <button id="labToggle">Sprite lab</button
+          ><button id="mute">Sound off</button><button id="pause">Pause</button>
+        </div>
+      </header>
+      <section class="intro">
+        <div>
+          <div class="chapter">CHAPTER 01 · THE FLOATING RUINS</div>
+          <h1>The Azure Gate</h1>
+          <p>A blade, a broken sky, and one last way home.</p>
+        </div>
+        <span class="tag">2D ACTION · SHORT DEMO</span>
+      </section>
+      <div class="stage">
+        <canvas
+          id="game"
+          width="1152"
+          height="648"
+          tabindex="0"
+          aria-label="Skybreak side-scrolling combat game"
+        ></canvas>
+        <div class="hud">
+          <div class="crest">✧</div>
+          <div>
+            <span class="heroLabel">LYRA · SKY KNIGHT</span>
+            <div class="bar"><span id="health"></span></div>
+            <div class="bar mana"><span id="mana"></span></div>
+          </div>
+        </div>
+        <div class="hudRight">AZURE SEALS<strong id="kills">0 / 6</strong></div>
+        <div class="overlay" id="overlay">
+          <div class="card">
+            <div class="eyebrow" id="overline">
+              A SMALL ADVENTURE ABOVE THE CLOUDS
+            </div>
+            <h2 id="title">Reclaim the gate.</h2>
+            <p id="message">
+              Cross the ruins. Defeat six sentinels. Reach the Azure Gate.<br />Chain
+              sword strikes, double jump, and unleash a sky burst.
+            </p>
+            <button class="primary" id="start">Begin adventure →</button>
+          </div>
+        </div>
+      </div>
+      <div class="touch">
+        <div>
+          <button data-key="ArrowLeft">←</button
+          ><button data-key="ArrowRight">→</button>
+        </div>
+        <div>
+          <button data-key="Space">Jump</button
+          ><button data-key="KeyJ">Slash</button
+          ><button data-key="KeyK">Burst</button
+          ><button data-key="ShiftLeft">Dash</button>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="keys">
+          <span><kbd>A D</kbd>Move</span><span><kbd>Space</kbd>Double jump</span
+          ><span><kbd>J</kbd>Slash</span><span><kbd>K</kbd>Sky burst</span
+          ><span><kbd>Shift</kbd>Dash</span><span><kbd>P</kbd>Pause</span>
+        </div>
+        <div class="status" id="status">Ready when you are.</div>
+      </div>
+      <section class="lab" id="lab">
+        <div class="labheader">
+          <h3>Behind the motion</h3>
+          <span class="eyebrow">ACTUAL RUNTIME FRAMES</span>
+        </div>
+        <p>
+          These are the same generated frames used in combat, extracted and
+          composed by sprite-gen. Check the silhouettes, foot alignment, and
+          motion yourself.
+        </p>
+        <canvas
+          id="preview"
+          width="1152"
+          height="190"
+          aria-label="Animation preview and four extracted frames"
+        ></canvas>
+        <div class="labcontrols">
+          <button data-state="idle" class="active">Idle · 4 frames</button
+          ><button data-state="run">Run · 4 frames</button
+          ><button data-state="attack">Attack · 4 frames</button
+          ><button id="slow">Slow motion</button
+          ><button id="labBg">Light background</button>
+        </div>
+        <p id="frameInfo"></p>
+      </section>
+      <footer>
+        <span>ORIGINAL CHARACTERS · BUILT WITH SOLO STUDIO + SPRITE-GEN</span
+        ><span>LOCAL DEMO / NO ACCOUNT REQUIRED</span>
+      </footer>
+    </main>
+    <script>
+      /*__ASSETS__*/
+    </script>
+    <script>
+      /*__GAME__*/
+    </script>
+  </body>
+</html>

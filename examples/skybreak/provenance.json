@@ -1,0 +1,76 @@
+{
+  "generated_on": "2026-09-12",
+  "tool": {
+    "repository": "https://github.com/aldegad/sprite-gen",
+    "revision": "78a74f48fec02dff107e1df68f644ff91674794e",
+    "version": "2.1.1",
+    "license": "Apache-2.0"
+  },
+  "generation": {
+    "route": "host built-in image_gen tool; no gen-set/provider adapter invocation",
+    "calls": 5,
+    "accepted_base": 1,
+    "accepted_rows": 3,
+    "rejected_rows": 1,
+    "references": "art/base.png plus sprite-gen prepared state layout guides",
+    "prompts": "art/prompts/"
+  },
+  "executed_stages": [
+    "prepare",
+    "extract",
+    "compose-atlas",
+    "inspect",
+    "compose-gif",
+    "recolor-palette",
+    "recolor"
+  ],
+  "quality": {
+    "rejected_take": "First running strip clipped the first sword at the image edge; regenerated.",
+    "fit_correction": "foot-centroid caused edge pixels in extracted run frames; changed to bbox-center and reran extraction.",
+    "final_extractor_errors": 0,
+    "final_extractor_warnings": 0,
+    "final_inspector_errors": 0,
+    "final_inspector_warnings": 0,
+    "limitations": [
+      "Four-frame running cycle is rough; body size and pivot vary across poses.",
+      "Idle motion is subtle.",
+      "Jump/hurt poses are reused; motion and hit feedback are procedural.",
+      "Echo knights are palette variants, not separately designed characters."
+    ]
+  },
+  "recolor": {
+    "method": "sprite-gen exact palette replacement",
+    "mapped_colors": 78717,
+    "substituted_pixels": 135757,
+    "passthrough_pixels": 0,
+    "alpha_identical": true,
+    "formula": "L=(54*r+183*g+19*b)//256; RGB=(min(255,int(.95*L+30)),int(.32*L+12),int(.48*L+22))"
+  },
+  "asset_validation": {
+    "hero": {
+      "size": [
+        1024,
+        768
+      ],
+      "nonempty_frames": 12,
+      "transparent_pixels": 636079,
+      "visible_magenta_pixels": 0
+    },
+    "enemy": {
+      "size": [
+        1024,
+        768
+      ],
+      "nonempty_frames": 12,
+      "transparent_pixels": 636079,
+      "visible_magenta_pixels": 0
+    }
+  },
+  "sha256": {
+    "assets/enemy/manifest.json": "481644af17ceb707636274a1fb8a3da017f93812cc1e9594e714a8a0a8cc27a9",
+    "assets/enemy/sprite-sheet-alpha.png": "0be6f0c8fa173e7ce7d1748fcf287803685192f943a91b84476ed8238383b7ce",
+    "assets/hero/manifest.json": "481644af17ceb707636274a1fb8a3da017f93812cc1e9594e714a8a0a8cc27a9",
+    "assets/hero/sprite-request.json": "609652938f41f1ef9dbd25372b70fa7bb48d4200c9647ec85137d34038f02bd5",
+    "assets/hero/sprite-sheet-alpha.png": "e49f4ab6a1be6b5549da4b610234271ae816c005cf58d6d66dee18f245442b40"
+  }
+}
