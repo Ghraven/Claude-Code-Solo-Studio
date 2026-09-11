@@ -1,12 +1,13 @@
 <h1 align="center">🎮 Claude Code Solo Studio</h1>
 
 <p align="center">
-  A lightweight Claude Code template for solo game developers.<br/>
+  A lightweight solo AI-coding studio template for game developers.<br/>
   <strong>Build your game — not your framework.</strong>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Claude%20Code-required-purple?style=flat-square" />
+  <img src="https://img.shields.io/badge/Claude%20Code-first-purple?style=flat-square" />
+  <img src="https://img.shields.io/badge/Codex%20%2F%20GPT-adaptable-111827?style=flat-square" />
   <img src="https://img.shields.io/badge/Godot-4.x-478CBF?style=flat-square&logo=godot-engine" />
   <img src="https://img.shields.io/badge/Unity-6-black?style=flat-square&logo=unity" />
   <img src="https://img.shields.io/badge/Agents-6-orange?style=flat-square" />
@@ -46,6 +47,7 @@ This template strips everything down to what actually matters:
 
 ### Prerequisites
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — `npm install -g @anthropic-ai/claude-code`
+- Or another coding agent that reads project instructions, such as Codex/GPT-style agents using `AGENTS.md`
 - Godot 4 or Unity installed
 - Git
 
@@ -63,6 +65,17 @@ Then in Claude Code:
 ```
 
 Answer 4 questions. Your project is ready in seconds.
+
+### Using It With Codex / GPT Coding Agents
+
+This repository is Claude Code-first because the slash commands, hooks, and specialist prompts use Claude's `.claude/` convention. The underlying workflow is not Claude-only:
+
+- `CLAUDE.md` is the Claude project brain.
+- `AGENTS.md` is the portable/Codex-friendly project brain.
+- The six specialists still map cleanly to Codex/GPT work: game design, programming, level design, UI, QA, and release.
+- Slash commands can be used as plain prompts if your coding agent does not support Claude-style commands directly.
+
+For Codex-style work, start by copying the relevant project facts from `CLAUDE.md` into `AGENTS.md`, then ask your coding agent to follow the same sprint, known-issues, and routing sections.
 
 ---
 
@@ -114,7 +127,7 @@ Use agents when you want deep focused work on a single domain. Slash commands ha
 | `qa` | Code review · bugs · test cases |
 | `release` | Builds · exports · versioning |
 
-Every agent reads `CLAUDE.md` for project context — no re-explaining your engine, platform, or genre every session.
+Every agent reads the project brain for context — `CLAUDE.md` for Claude Code, or `AGENTS.md` for Codex/GPT-style agents — so you do not need to re-explain your engine, platform, or genre every session.
 
 ---
 
@@ -123,6 +136,7 @@ Every agent reads `CLAUDE.md` for project context — no re-explaining your engi
 ```
 my-game/
 ├── CLAUDE.md                Your project brain — update this as you build
+├── AGENTS.md                Portable project brain for Codex/GPT-style agents
 ├── .claude/
 │   ├── agents/              6 specialist agent prompts
 │   ├── skills/              10 slash commands
@@ -140,12 +154,12 @@ my-game/
 
 ## How the Token Efficiency Works
 
-**Agents don't talk to each other.** Each one has full context baked into its prompt and reads `CLAUDE.md` for project state. There's no coordination layer, no approval chains, no "consulting" step.
+**Agents don't talk to each other.** Each specialist has full context baked into its prompt and reads the relevant project brain for project state. There's no coordination layer, no approval chains, no "consulting" step.
 
-You stay in control. Claude starts coding immediately.
+You stay in control. The coding agent starts with the specialist context it needs and gets to implementation quickly.
 
 - Hooks only fire when relevant (commit hook exits instantly if not a commit)
-- `CLAUDE.md` carries context across sessions — no context re-setup
+- `CLAUDE.md` / `AGENTS.md` carries context across sessions — no context re-setup
 - Specialists go straight to work — no meta-discussion about what to build
 
 ---
@@ -167,6 +181,8 @@ touch .claude/hooks/my-hook.sh
 ```
 
 The default Claude Code permissions allow common read-only navigation tools, including `rg`, so agents can search the project quickly without broad shell access.
+
+If you adapt the template for Codex or another GPT coding agent, keep the same safety idea: grant enough filesystem/tool access for fast search and local verification, but keep destructive actions and public pushes explicit.
 
 ---
 

@@ -4,6 +4,10 @@ All notable changes to Claude Code Solo Studio are documented here.
 
 ## [Unreleased]
 
+### Added
+- `AGENTS.md` portable project-brain template for Codex/GPT-style coding agents.
+- README guidance for adapting the lean solo-studio workflow beyond Claude Code.
+
 ### Fixed
 - `session-start.sh` now shows a clear fallback when `CLAUDE.md` has no active sprint tasks instead of printing a blank sprint block.
 
